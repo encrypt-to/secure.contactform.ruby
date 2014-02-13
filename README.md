@@ -1,6 +1,4 @@
-# Encrypt.to on Heroku
-
-Secure contact form ready for Heroku.
+# Secure contact form ready for Heroku.
 
 #### _Sinatra app for receiving encrypted PGP messages on [Heroku](http://heroku.com)._
 
