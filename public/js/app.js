@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(){	
   if (window.crypto && window.crypto.getRandomValues) {
 		// form ready
+		document.getElementById("name").focus();
 		var message = document.getElementById("message");
 		var ciphertext = document.getElementById("ciphertext");				
 		// encrypt on the fly
