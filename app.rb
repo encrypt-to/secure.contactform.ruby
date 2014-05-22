@@ -17,7 +17,7 @@ end
 post '/contact' do 
   require 'pony'
     Pony.mail(
-      :from => params[:name] + "<" + params[:email] + ">",
+      :from => params[:name] + " <" + params[:email] + ">",
       :to => settings.email_address,
       :subject => params[:name] + " has contacted you",
       :body => params[:message],
