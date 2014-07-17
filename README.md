@@ -50,6 +50,7 @@ Once this returns successfully, push your app to Heroku.
 	
 ### Changelog
 
+* v1.3 Update OpenPGP.js to v0.7.1
 * v1.2 Update OpenPGP.js to v0.6.0
 * v1.1 Update OpenPGP.js to v0.5.1
 * v1.0 Release
