@@ -7,15 +7,20 @@ document.addEventListener('DOMContentLoaded', function() {
 		// encrypt on the fly
 		message.addEventListener("input", function() {
 			ciphertext.style.display = "block";
-			ciphertext.value = cleanup(encrypt(message.value));
+			cleanup(encrypt(message.value)).then(function (clean_msg) {
+				ciphertext.value = clean_msg;
+			});
 		});
 		// encrypt on submit
 		document.forms[0].addEventListener("submit", function(evt) {
-			if( form.elements['message'].value == '') {
-				evt.preventDefault();
+			evt.preventDefault();
+			if (form.elements['message'].value == '') {
 				alert('Please enter a message!');
 			} else {
-				form.elements['message'].value = encrypt(message.value);
+				encrypt(message.value).then(function(encrypted_msg) {
+					form.elements['message'].value = encrypted_msg;
+					form.submit();
+				});
 				return true;
 			}
 		});
@@ -28,14 +33,19 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function cleanup(msg) {
-	return msg.replace(/(\r\n|\n|\r)/gm,"").replace("-----BEGIN PGP MESSAGE-----Version: OpenPGP.js v0.3.2Comment: http://openpgpjs.org","").replace("-----END PGP MESSAGE-----","");
+	return msg.then(function(msgraw) {
+		return msgraw.replace(/(\r\n|\n|\r)/gm,"").replace("-----BEGIN PGP MESSAGE-----Version: OpenPGP.js v0.9.0Comment: http://openpgpjs.org","").replace("-----END PGP MESSAGE-----","");
+	});
 }
 
 function encrypt(msg) {
 	if (msg.indexOf("-----BEGIN PGP MESSAGE-----") !== -1 && msg.indexOf("-----END PGP MESSAGE-----") !== -1) {
 		return msg;
 	} else {
-		var publickey = openpgp.key.readArmored(document.getElementById("pubkey").innerHTML).keys[0];
-		return openpgp.encryptMessage([publickey],msg);
+		var key = document.getElementById("pubkey").innerHTML;
+		var publicKey = openpgp.key.readArmored(key).keys[0];
+		return openpgp.encryptMessage(publicKey, msg).then(function(pgpMessage) {
+			return pgpMessage;
+		});
 	}
 }
