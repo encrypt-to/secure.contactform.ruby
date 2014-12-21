@@ -14,7 +14,7 @@ get '/' do
   erb :contact
 end
 
-post '/contact' do 
+post '/contact' do
   require 'pony'
     Pony.mail(
       :from => params[:name] + " <" + params[:email] + ">",
@@ -23,14 +23,14 @@ post '/contact' do
       :body => params[:message],
       :via => :smtp,
       :via_options => { 
-        :address              => 'smtp.' + settings.email_service, 
-        :port                 => '587', 
-        :enable_starttls_auto => true, 
-        :user_name            => settings.email_username, 
-        :password             => settings.email_password, 
-        :authentication       => :plain, 
+        :address              => 'smtp.' + settings.email_service,
+        :port                 => '587',
+        :enable_starttls_auto => true,
+        :user_name            => settings.email_username,
+        :password             => settings.email_password,
+        :authentication       => :plain,
         :domain               => settings.email_domain
       }
     )
-  'Many thanks for your mail!' 
+  'Many thanks for your mail!'
 end

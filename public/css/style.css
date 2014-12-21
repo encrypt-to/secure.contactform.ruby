@@ -1,6 +1,6 @@
-form{padding: 1em;}
-#name{width: 25%;}
-#email{width: 25%;}
-#message{width: 50%;height:300px;} 
-#ciphertext{width: 50%;height:100px;display:none;}
-.pure-form  textarea[readonly] {background: #fff;border-color: #fff;}
+form {padding: 1em;}
+#name {width: 25%;}
+#email {width: 25%;}
+#message {width: 50%; height: 300px;}
+#ciphertext {width: 50%; height: 100px; display: none;}
+.pure-form textarea[readonly] {background: #fff; border-color: #fff;}

@@ -4,9 +4,9 @@ gem 'sinatra'
 gem 'pony'
 
 group :development do
-	gem 'shotgun'
+  gem 'shotgun'
 end
 
 group :production do
-	gem 'thin'
+  gem 'thin'
 end
